@@ -21,9 +21,16 @@ class WeatherVisualizer:
     
     def setup_style(self):
         """设置绘图样式"""
-        plt.style.use('seaborn-v0_8')
+        try:
+            plt.style.use('seaborn-v0_8')
+        except:
+            try:
+                plt.style.use('seaborn')
+            except:
+                plt.style.use('default')
+        
         sns.set_palette("husl")
-        plt.rcParams['font.sans-serif'] = ['SimHei', 'DejaVu Sans']
+        plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
         plt.rcParams['axes.unicode_minus'] = False
     
     def load_data(self):

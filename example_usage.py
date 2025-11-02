@@ -3,6 +3,7 @@ ERA5天气预测系统使用示例
 演示如何使用各个模块进行天气预测
 """
 
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -23,7 +24,10 @@ def example_1_download_data():
     downloader = ERA5DataDownloader()
     
     # 检查数据是否已存在
-    if not downloader._check_data_exists():
+    surface_file = f"{DATA_DIR}/era5_surface_combined.nc"
+    pressure_file = f"{DATA_DIR}/era5_pressure_combined.nc"
+    
+    if not (os.path.exists(surface_file) and os.path.exists(pressure_file)):
         print("开始下载ERA5数据...")
         downloader.download_era5_data()
         downloader.combine_data_files()
